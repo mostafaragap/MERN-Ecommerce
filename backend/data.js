@@ -10,7 +10,7 @@ products :[ {
  brand:'Nike' , 
  rating : 4.5 , 
  numberOfReviews : 10 , 
- description : 'high quality shirt'
+ description : 'high quality shirt test api'
 
 },
 {
@@ -22,7 +22,7 @@ products :[ {
     countInStock:10 , 
     price :50 , 
     brand:'Nike' , 
-    rating : 4.3 , 
+    rating : 4.1 , 
     numberOfReviews : 10,
     description : 'high quality shirt'
    
@@ -33,12 +33,26 @@ products :[ {
     slug:'nike-pants-men',
     category: "Pants", 
     countInStock:10 , 
-    image :'/images/d2.png' , 
+    image :'/images/d2.jpg' , 
     price :80 , 
     brand:'Nike' , 
-    rating : 4.6 , 
+    rating : 3.4 , 
     numberOfReviews : 10,
     description : 'high quality pans'
+   
+   },
+   {
+    _id:"4",
+    name : 'Best pants' ,
+    slug:'nike-pants-d4',
+    category: "Pants", 
+    countInStock:10 , 
+    image :'/images/d4.jpg' , 
+    price :80 , 
+    brand:'Nike' , 
+    rating : 3.5 , 
+    numberOfReviews : 10,
+    description : 'high quality pans test'
    
    },
 

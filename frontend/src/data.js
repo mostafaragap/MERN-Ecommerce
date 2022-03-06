@@ -1,7 +1,7 @@
 export default  {
 products :[ {
     _id:"1" ,
- name : 'Nike slim Shirt' , 
+ name : 'Nike slim Shirt test' , 
  slug:'nike-slim-shirt',
  category: "Shirts",
  countInStock:10 ,

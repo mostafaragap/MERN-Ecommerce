@@ -1,66 +1,49 @@
-import logo from './logo.svg';
+
 import './App.css';
-import data from './data' ;
+
 import {
-  BrowserRouter as Router,
-  Switch,
+  BrowserRouter ,
   Route,
-  Link,
   Routes
 } from "react-router-dom";
 import HomeScreen from './Screens/HomeScreen';
 import ProductScreen from './Screens/ProductScreen';
+import Navbar from 'react-bootstrap/Navbar';
+import Container from 'react-bootstrap/Container';
+import {LinkContainer} from 'react-router-bootstrap';
 
 function App() {
-  const openMenue =() =>{
-    document.querySelector(".sidebar").classList.add("open");
-} 
-
-const  closeMenue =() =>{
-    document.querySelector(".sidebar").classList.remove("open");
-}
-
   return (
-    <Router> 
-    <div className="grid-container">
-        <header className="header"> 
-            
-            <div className="brand">
-                <button onClick={openMenue}>
-                &#9776;
-                </button>
-                <Link to="/">Amazone</Link>
-              
-            </div>
-            <div className="header-links">
-                
-                <a href="cart.html">Cart </a>
-                <a href="signin.html">sign In </a>
-            
-            </div>
-        </header>
-      <aside className="sidebar">
-          <h3>Shopping Categories</h3>
-          <button className="sidebar-close-button" onClick={closeMenue}>X</button>
-          <ul>
-              <li>  <a href="index.html">Pants</a></li>
-              <li>  <a href="index.html">Shirts</a></li>
-          </ul>
-
-      </aside>
-        <main className="main">
-            <div className="content"> 
-            <Routes>
-            <Route path="/products/:slug" element={<ProductScreen />}/>
-            <Route path="/" exact={true} element={<HomeScreen />} />
-            </Routes>
+    <BrowserRouter>
+      
+      <div className="d-flex flex-column site-container">
+        <header>
           
-            </div>
+          <Navbar bg="dark" variant="dark">
+            <Container>
+              <LinkContainer to="/">
+                <Navbar.Brand>amazona</Navbar.Brand>
+              </LinkContainer>
+            </Container>
+          </Navbar>
+        </header>
+        <main>
+        
+          <Container>
+            <Routes>
+              <Route path="/product/:slug" element={<ProductScreen />} />
+              <Route path="/" element={<HomeScreen />} />
+            </Routes>
+          </Container>
         </main>
-        <footer className="footer"> Allright reserved </footer>
-    </div>
-    </Router>
+        <footer>
+          <div className="text-center">All rights reserved</div>
+        </footer>
+        
+      </div>
+    </BrowserRouter>
   );
+
 }
 
 export default App;
