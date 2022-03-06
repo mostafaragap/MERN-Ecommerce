@@ -4,8 +4,8 @@ import { Link, useParams } from 'react-router-dom';
 
 function ProductScreen(props)
 {
-    const { id } = useParams();
-    const product = data.products.find(x => x._id === id);
+    const { slug } = useParams();
+    const product = data.products.find(x => x.slug ===slug );
     return <div>
     <div className="back-to-result">     
     <Link to="/"> Back To result</Link>
@@ -20,8 +20,8 @@ function ProductScreen(props)
     <li> <h4>{product.name}</h4></li>
     <li> {product.rating} Stars ( {product.numberOfReviews}Reviews)</li>
     <li> Price: <b> ${product.price}</b> </li>
-    <li> Description:
-      <div> {product.description}</div> </li>
+    <li> Description :   
+       {  product.description} </li>
 </ul>
 </div>
 

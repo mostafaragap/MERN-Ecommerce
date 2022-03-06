@@ -51,7 +51,7 @@ const  closeMenue =() =>{
         <main className="main">
             <div className="content"> 
             <Routes>
-            <Route path="/products/:id" element={<ProductScreen />}/>
+            <Route path="/products/:slug" element={<ProductScreen />}/>
             <Route path="/" exact={true} element={<HomeScreen />} />
             </Routes>
           
