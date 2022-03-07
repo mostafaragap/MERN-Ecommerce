@@ -1,6 +1,6 @@
-import React, { useEffect, useReducer } from "react";
+import React, { useContext, useEffect, useReducer } from "react";
 import data from "../data";
-import { Link, useParams } from 'react-router-dom';
+import {  useNavigate, useParams } from 'react-router-dom';
 import axios from "axios";
 import Row from "react-bootstrap/esm/Row";
 import Col from "react-bootstrap/esm/Col";
@@ -10,6 +10,10 @@ import Card from 'react-bootstrap/Card'
 import Rating from "../components/Rating";
 import Button from "react-bootstrap/esm/Button";
 import {Helmet} from 'react-helmet-async';
+import MessageBox from "../components/MessageBox";
+import LoadingBox from "../components/LoadingBox";
+import { getError } from "../components/utils";
+import { Store } from "../Store";
 
 
 const reducer = (state , action) =>{
@@ -28,6 +32,7 @@ const reducer = (state , action) =>{
 
 function ProductScreen(props)
 {
+  const navigate = useNavigate();
     const { slug } = useParams();
     const [{ loading, error, product }, dispatch] = useReducer(reducer, {
         product: [],
@@ -42,18 +47,39 @@ function ProductScreen(props)
             const result = await axios.get(`/api/products/slug/${slug}`);
             dispatch({ type: 'FETCH_SUCCESS', payload: result.data });
           } catch (err) {
-            dispatch({ type: 'FETCH_FAIL', payload: err.message });
+            dispatch({ type: 'FETCH_FAIL', payload:getError(err) });
           }
         
         };
         fetchData();
       }, [slug]);
 
-    
+    //Add to cart function
+    const { state, dispatch: ctxDispatch } = useContext(Store);
+    const { cart } = state;
+
+  const addToCartHandler = async () => {
+    const existItem = cart.cartItems.find((x) => x._id === product._id);
+    const quantity = existItem ? existItem.quantity + 1 : 1;
+    const { data } = await axios.get(`/api/products/${product._id}`);
+    if (data.countInStock < quantity) {
+      window.alert('Sorry. Product is out of stock');
+      return;
+    }
+      ctxDispatch({
+        type: 'CART_ADD_ITEM',
+        payload: { ...product, quantity  },
+      });
+      navigate('/cart')
+    }; 
+   
     //const productt = data.products.find(x => x.slug ===slug );
     return (
-        loading? <div>Loading...</div>
-        :error?<div>{error}</div>
+      loading ? (
+        <LoadingBox />
+        ) : error ? (
+       <MessageBox variant="danger">{error}</MessageBox>
+      )
         :
         <div>
            <Row>
@@ -115,9 +141,9 @@ function ProductScreen(props)
               {product.countInStock > 0 &&
               <ListGroup.Item>
                 <div className="d-grid">
-                <Button variant="warning">
-                    Add To cart
-                </Button>
+                <Button onClick={addToCartHandler} variant="warning">
+                        Add to Cart
+                      </Button>
 
                 </div>
 

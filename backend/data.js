@@ -43,10 +43,10 @@ products :[ {
    },
    {
     _id:"4",
-    name : 'Best pants' ,
+    name : 'Best pants white' ,
     slug:'nike-pants-d4',
     category: "Pants", 
-    countInStock:10 , 
+    countInStock:0 , 
     image :'/images/d4.jpg' , 
     price :80 , 
     brand:'Nike' , 
