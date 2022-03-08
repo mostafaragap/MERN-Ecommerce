@@ -40,7 +40,7 @@ export default function CartScreen() {
   }
 
   const cheackoutHandler=()=> {
-      navigate('/signin?redirect=/shipping');
+    navigate('/signin?redirect=/shipping');
   }
 
   return (
