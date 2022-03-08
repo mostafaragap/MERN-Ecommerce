@@ -1,6 +1,22 @@
+import bcrypt from 'bcryptjs'
 export default  {
+
+    users:[
+    {
+    name:'mostafa' , 
+    email:'admin@gmail.com' ,
+    password:bcrypt.hashSync('01006092170'),
+    isAdmin:true
+
+    },
+    {
+        name:'ahmed' , 
+        email:'ahmed@gmail.com' ,
+        password:bcrypt.hashSync('01006092170'),
+        isAdmin:false
+   }],
 products :[ {
-    _id:"1" ,
+   
  name : 'Nike slim Shirt' , 
  slug:'nike-slim-shirt',
  category: "Shirts",
@@ -14,7 +30,7 @@ products :[ {
 
 },
 {
-    _id:"2" ,
+   
     name : 'Fit Shirt' , 
     slug:'nike-slim-men',
     category: "Shirts",
@@ -28,7 +44,7 @@ products :[ {
    
    },
    {
-    _id:"3",
+
     name : 'Best pants' ,
     slug:'nike-pants-men',
     category: "Pants", 
@@ -42,7 +58,7 @@ products :[ {
    
    },
    {
-    _id:"4",
+    
     name : 'Best pants white' ,
     slug:'nike-pants-d4',
     category: "Pants", 
