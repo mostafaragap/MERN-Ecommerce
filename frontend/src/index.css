@@ -73,3 +73,38 @@ main{
 #img-thumbnail{
   height: 80px;
 }
+
+
+/*sidebar*/
+.navbar-brand
+{
+  font-weight: bold;
+}
+
+.side-navbar{
+  width: 240px;
+  height: 100% ;
+  position: absolute;
+  left: -300px;
+  background-color: #100901;
+  transition: 0.5s;
+}
+
+.site-container{
+  transition: 0.4s;
+}
+
+.active-container{
+  margin-left: 240px;
+}
+.active-nav{
+  left:0;
+}
+
+#button-search{
+  background-color: #f08000;
+}
+
+.text-bold {
+  font-weight: bold;
+}
