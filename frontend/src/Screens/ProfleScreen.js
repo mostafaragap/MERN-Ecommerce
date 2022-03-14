@@ -62,7 +62,7 @@ export default function ProfileScreen() {
           oldPassword
         },
         {
-          headers: { Authorization: `Bearer ${userInfo.token}` },
+          headers: { authorization: `Bearer ${userInfo.token}` },
         }
       );
       dispatch({

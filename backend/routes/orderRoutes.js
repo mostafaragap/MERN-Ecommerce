@@ -128,7 +128,7 @@ orderRouter.post(
             .messages()
             .send(
               {
-                from: 'Brands <brands@mg.yourdomain.com>',
+                from: 'Brands <brands@mg.brands-mern.herokuapp.com>',
                 to: `${order.user.name} <${order.user.email}>`,
                 subject: `New order ${order._id}`,
                 html: payOrderEmailTemplate(order),
