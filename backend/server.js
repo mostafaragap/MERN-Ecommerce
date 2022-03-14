@@ -9,7 +9,7 @@ import orderRouter from './routes/orderRoutes.js';
 import uploadRouter from './routes/uploadRoutes.js';
 dotenv.config();
 
-mongoose.connect(process.env.MONGODB_URI)
+mongoose.connect(process.env.MONGODB_ATLAS_URI)
 .then(()=>{
     console.log("connected to DB");
 })

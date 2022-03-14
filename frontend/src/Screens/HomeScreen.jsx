@@ -56,7 +56,7 @@ function HomeScreen() {
    
     
      <Helmet>
-             <title>Amazone</title> 
+             <title>Brands</title> 
               </Helmet>
               <Header />
               <Container className="pt-3">
