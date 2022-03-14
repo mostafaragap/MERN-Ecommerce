@@ -99,6 +99,9 @@ export default function UserListScreen() {
       ) : error ? (
         <MessageBox variant="danger">{error}</MessageBox>
       ) : (
+        <div id='tbl-container'>
+
+       
         <table className="table">
           <thead>
             <tr>
@@ -139,6 +142,7 @@ export default function UserListScreen() {
             ))}
           </tbody>
         </table>
+        </div>
       )}
       </Container>
     </div>
