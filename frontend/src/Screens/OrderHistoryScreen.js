@@ -59,6 +59,7 @@ export default function OrderHistoryScreen() {
       ) : error ? (
         <MessageBox variant="danger">{error}</MessageBox>
       ) : (
+        <div id='tbl-container'>
         <table className="table">
           <thead>
             <tr>
@@ -97,6 +98,7 @@ export default function OrderHistoryScreen() {
             ))}
           </tbody>
         </table>
+        </div>
       )}
       </Container>
     </div>

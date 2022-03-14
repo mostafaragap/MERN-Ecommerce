@@ -125,4 +125,12 @@ main{
     font-size: 3rem;
   }
 
+
+  #tbl-container{
+   
+ 
+    overflow: auto;
+    white-space: nowrap;
+  }
+
  

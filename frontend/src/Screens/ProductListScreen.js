@@ -13,6 +13,7 @@ import { getError } from '../components/utils';
 import { Helmet } from 'react-helmet-async';
 import Container from 'react-bootstrap/esm/Container';
 import Badge from 'react-bootstrap/esm/Badge';
+import Table from 'react-bootstrap/Table'
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -141,12 +142,12 @@ export default function ProductListScreen() {
   };
 
   return (
-   
     <div>
+    <Container className='pt-3'>
      <Helmet>
     <title> Products </title>
          </Helmet>
-         <Container className='pt-3'>
+         
         <Row>
         <Col>
           <h1>Products</h1>
@@ -168,7 +169,9 @@ export default function ProductListScreen() {
         <MessageBox variant="danger">{error}</MessageBox>
       ) : (
         <>
-          <table className="table">
+        <Row>
+        <div id='tbl-container'>
+        <Table striped bordered hover size="sm">
             <thead>
               <tr>
                 <th>ID</th>
@@ -211,7 +214,9 @@ export default function ProductListScreen() {
                 </tr>
               ))}
             </tbody>
-          </table>
+          </Table>
+          </div>
+          </Row>
           <div>
             {[...Array(pages).keys()].map((x) => (
               <Link

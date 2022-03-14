@@ -80,7 +80,7 @@ export default function ProfileScreen() {
   };
 
   return (
-    <Container>
+    <Container className='pt-5'>
     <div className="container small-container" id='small-container'>
       <Helmet>
         <title>User Profile</title>
