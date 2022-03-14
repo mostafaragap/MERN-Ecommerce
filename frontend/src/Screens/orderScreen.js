@@ -12,6 +12,7 @@ import MessageBox from '../components/MessageBox';
 import { Store } from '../Store';
 import { toast } from 'react-toastify';
 import { getError } from '../components/utils';
+import Container from 'react-bootstrap/esm/Container';
 
 function reducer(state, action) {
   switch (action.type) {
@@ -147,6 +148,7 @@ function onError(err) {
       <Helmet>
         <title>Order Preview</title>
       </Helmet>
+      <Container  className='pt-3'>
       <h1 className="my-3">Order {orderId}</h1>
       <Row>
         <Col md={8}>
@@ -269,6 +271,7 @@ function onError(err) {
           </Card>
         </Col>
       </Row>
+      </Container>
     </div>
   );
 }

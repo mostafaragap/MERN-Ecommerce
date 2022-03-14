@@ -9,6 +9,9 @@ import Product from '../components/Product';
 import {Helmet} from "react-helmet-async"
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
+import Header from "../components/Header";
+import Container from "react-bootstrap/esm/Container";
+import CounterComponent from "../components/counterComponent";
 
 
 
@@ -50,9 +53,13 @@ function HomeScreen() {
 
   return (
     <div>
+   
+    
      <Helmet>
              <title>Amazone</title> 
               </Helmet>
+              <Header />
+              <Container className="pt-3">
       <h1>Featured Products</h1>
       
       <div className="products">
@@ -70,6 +77,8 @@ function HomeScreen() {
           </Row>
         )}
       </div>
+      <CounterComponent />
+      </Container>
     </div>
   );
 }

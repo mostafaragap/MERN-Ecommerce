@@ -13,6 +13,7 @@ import { toast } from 'react-toastify';
 import { getError } from '../components/utils';
 import Axios from 'axios';
 import LoadingBox from '../components/LoadingBox';
+import Container from 'react-bootstrap/esm/Container';
 
 const reducer = (state , action) =>{
     switch (action.type){
@@ -89,6 +90,7 @@ try{
 
   return (
     <div>
+    <Container className='pt-3'>
       <CheckoutSteps step1 step2 step3 step4></CheckoutSteps>
       <Helmet>
         <title>Preview Order</title>
@@ -200,6 +202,7 @@ try{
           </Card>
         </Col>
       </Row>
+      </Container>
     </div>
   );
 }

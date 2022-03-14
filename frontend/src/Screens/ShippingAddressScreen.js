@@ -5,6 +5,7 @@ import Button from 'react-bootstrap/Button';
 import { useNavigate } from 'react-router-dom';
 import { Store } from '../Store';
 import CheckoutSteps from '../components/CheckoutSteps';
+import Container from 'react-bootstrap/esm/Container';
 
 export default function ShippingAddressScreen() {
   const navigate = useNavigate();
@@ -54,6 +55,7 @@ export default function ShippingAddressScreen() {
       <Helmet>
         <title>Shipping Address</title>
       </Helmet>
+      <Container className='pt-3'>
 
       <CheckoutSteps step1 step2></CheckoutSteps>
       <div className="container small-container" id='small-container'>
@@ -106,6 +108,7 @@ export default function ShippingAddressScreen() {
           </div>
         </Form>
       </div>
+      </Container>
     </div>
   );
 }

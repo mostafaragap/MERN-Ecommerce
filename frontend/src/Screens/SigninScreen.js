@@ -48,7 +48,7 @@ useEffect(()=> {
     
 } , [navigate , redirect , userInfo]);
 
-   return (
+   return ( <Container  className='pt-3'>
     <Container className="small-container" id='small-container'>
       <Helmet>
         <title>Sign In</title>
@@ -77,6 +77,7 @@ useEffect(()=> {
           <Link to={`/signup?redirect=${redirect}`}>Create your account</Link>
         </div>
       </Form>
+    </Container>
     </Container>
   );
 }

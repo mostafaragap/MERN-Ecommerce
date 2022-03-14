@@ -28,6 +28,19 @@ function Product(props) {
         payload: { ...item, quantity  },
       });
 }
+function ratingNumbre()
+{
+  let numbers = 0 ;
+  let i = 0;
+  product.reviews.forEach(element => {
+    numbers+=element.rating;
+    i++;
+  });
+ let c = numbers / i
+ 
+  return c ;
+}
+
   return (
     <Card>
       <Link to={`/product/${product.slug}`}>
@@ -35,9 +48,9 @@ function Product(props) {
       </Link>
       <Card.Body>
         <Link to={`/product/${product.slug}`}>
-          <Card.Title>{product.name}</Card.Title>
-        </Link>
-        <Rating rating={product.rating} numReviews={product.numberOfReviews} />
+          <Card.Title>{product.name}{' '}  </Card.Title>
+        </Link><small>{product.supCategory}</small>
+        <Rating rating={ratingNumbre()} numReviews={product.reviews.length} />
         <Card.Text>${product.price}</Card.Text>
         {product.countInStock === 0 
         ? <Button onClick={()=> addToCartHandler(product)} disabled={true} variant="secondary">Out OF Stock</Button> 

@@ -1,0 +1,21 @@
+{
+  "name": "ecommerce",
+  "version": "1.0.0",
+  "description": "1. init a basics frontend & create react app\r 2. create Git Repository\r 3. create nodejs server\r 4. modify on design and use react-bootstrap . edit server.js\r 5. create-loading component & Add to cart screen with all functions.",
+  "main": "index.js",
+  "scripts": {
+    "build":"cd backend && npm install && cd ../frontend && npm install && npm run build",
+    "start":"node backend/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mostafaragap/MERN-Ecommerce.git"
+  },
+  "author": "mostafa",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mostafaragap/MERN-Ecommerce/issues"
+  },
+  "homepage": "https://github.com/mostafaragap/MERN-Ecommerce#readme"
+}

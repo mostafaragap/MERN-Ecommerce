@@ -5,6 +5,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import CheckoutSteps from '../components/CheckoutSteps';
 import { Store } from '../Store';
+import Container from 'react-bootstrap/esm/Container';
 
 export default function PaymentMethodScreen() {
   const navigate = useNavigate();
@@ -30,6 +31,7 @@ export default function PaymentMethodScreen() {
   };
   return (
     <div>
+    <Container  className='pt-3'>
       <CheckoutSteps step1 step2 step3></CheckoutSteps>
       <div className="container small-container" id='small-container'>
         <Helmet>
@@ -62,6 +64,7 @@ export default function PaymentMethodScreen() {
           </div>
         </Form>
       </div>
+      </Container>
     </div>
   );
 }

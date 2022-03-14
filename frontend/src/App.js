@@ -28,6 +28,16 @@ import SearchScreen from './Screens/SearchScreen';
 import ProtectedRoute from './components/ProtectedRoute';
 import DashboardScreen from './Screens/DashboardScreen';
 import AdminRoute from './components/AdminRoute';
+import ProductListScreen from './Screens/ProductListScreen';
+import ProductEditScreen from './Screens/ProductEditScreen';
+import UserEditScreen from './Screens/UserEditScreen ';
+import UserListScreen from './Screens/UserListScreen';
+import Footer from './components/Footer';
+import Header from './components/Header';
+import counterComponent from './components/counterComponent'
+import CounterComponent from './components/counterComponent';
+
+
 
 function App() {
   const { state, dispatch: ctxDispatch } = useContext(Store);
@@ -54,6 +64,8 @@ function App() {
   }, []);
   return (
     <BrowserRouter>
+
+  
       <div
         className={
           sidebarIsOpen
@@ -72,7 +84,7 @@ function App() {
                 <i className="fas fa-bars"></i>
               </Button>
               <LinkContainer to="/">
-                <Navbar.Brand>amazona</Navbar.Brand>
+                <Navbar.Brand>Brands</Navbar.Brand>
               </LinkContainer>
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">
@@ -114,15 +126,15 @@ function App() {
                         <NavDropdown.Item>Dashboard</NavDropdown.Item>
                       </LinkContainer>  
 
-                      <LinkContainer to="/admin/productslist">
+                      <LinkContainer to="/admin/products">
                         <NavDropdown.Item>Products</NavDropdown.Item>
                       </LinkContainer>  
 
-                      <LinkContainer to="/admin/orderslist">
+                      <LinkContainer to="/admin/orders">
                         <NavDropdown.Item>Orders</NavDropdown.Item>
                       </LinkContainer> 
 
-                      <LinkContainer to="/admin/userlist">
+                      <LinkContainer to="/admin/users">
                         <NavDropdown.Item>Users</NavDropdown.Item>
                       </LinkContainer>  
 
@@ -134,6 +146,7 @@ function App() {
             </Container>
           </Navbar>
         </header>
+    
         <div
           className={
             sidebarIsOpen
@@ -158,33 +171,40 @@ function App() {
           </Nav>
         </div>
         <main>
-          <Container className="mt-3">
+       
+         
             <Routes>
+              <Route path="/" element={<HomeScreen />} />
               <Route path="/product/:slug" element={<ProductScreen />} />
               <Route path="/cart" element={<CartScreen />} />
               <Route path="/search" element={<SearchScreen />} />
               <Route path="/signin" element={<SigninScreen />} />
               <Route path="/signup" element={<SignupScreen />} />
-              <Route path="/profile" element={
-                <ProtectedRoute>
-                      <ProfileScreen />
-                </ProtectedRoute>
-              
-              } />
+              <Route
+                path="/profile"
+                element={
+                  <ProtectedRoute>
+                    <ProfileScreen />
+                  </ProtectedRoute>
+                }
+              />
               <Route path="/placeorder" element={<PlaceOrderScreen />} />
 
-              <Route path="/order/:id" element={
-              <ProtectedRoute>
-                   <OrderScreen />
-              </ProtectedRoute>
-              }></Route>
+              <Route
+                path="/order/:id"
+                element={
+                  <ProtectedRoute>
+                    <OrderScreen />
+                  </ProtectedRoute>
+                }
+              ></Route>
               <Route
                 path="/orderhistory"
                 element={
                   <ProtectedRoute>
-                     <OrderHistoryScreen />
+                    <OrderHistoryScreen />
                   </ProtectedRoute>
-               }
+                }
               ></Route>
 
               <Route
@@ -192,21 +212,56 @@ function App() {
                 element={<ShippingAddressScreen />}
               ></Route>
               <Route path="/payment" element={<PaymentMethodScreen />}></Route>
-              <Route path="/" element={<HomeScreen />} />
+              
             {/*Admin Routes*/}
-            <Route path='/admin/dashboard' element={
-            <AdminRoute>
-                <DashboardScreen />
-            </AdminRoute>
-            }>
+               {/* Admin Routes */}
+               <Route
+                path="/admin/dashboard"
+                element={
+                  <AdminRoute>
+                    <DashboardScreen />
+                  </AdminRoute>
+                }
+              ></Route>
+                  <Route
+                path="/admin/products"
+                element={
+                  <AdminRoute>
+                    <ProductListScreen />
+                  </AdminRoute>
+                }
+              ></Route>
 
-            </Route>
+               <Route
+                path="/admin/product/:id"
+                element={
+                  <AdminRoute>
+                    <ProductEditScreen />
+                  </AdminRoute>
+                }
+              ></Route>
+               <Route
+                path="/admin/users"
+                element={
+                  <AdminRoute>
+                    <UserListScreen />
+                  </AdminRoute>
+                }
+              ></Route>
+               <Route
+                path="/admin/user/:id"
+                element={
+                  <AdminRoute>
+                    <UserEditScreen />
+                  </AdminRoute>
+                }
+              ></Route>
             </Routes>
-          </Container>
+         
         </main>
-        <footer>
-          <div className="text-center">All rights reserved</div>
-        </footer>
+
+        <Footer />
+      
       </div>
     </BrowserRouter>
   );

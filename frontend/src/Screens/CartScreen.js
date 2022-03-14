@@ -9,6 +9,7 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import Container from 'react-bootstrap/esm/Container';
 
 export default function CartScreen() {
   const { state, dispatch: ctxDispatch } = useContext(Store);
@@ -48,6 +49,7 @@ export default function CartScreen() {
       <Helmet>
         <title>Shopping Cart</title>
       </Helmet>
+      <Container className="pt-3">
       <h1>Shopping Cart</h1>
       <Row>
         <Col md={8}>
@@ -126,6 +128,7 @@ export default function CartScreen() {
           </Card>
         </Col>
       </Row>
+      </Container>
     </div>
   );
 }

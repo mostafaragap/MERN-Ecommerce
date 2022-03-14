@@ -7,6 +7,7 @@ import MessageBox from '../components/MessageBox';
 import { Store } from '../Store';
 import { getError } from '../components/utils';
 import Button from 'react-bootstrap/esm/Button';
+import Container from 'react-bootstrap/esm/Container';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -51,6 +52,7 @@ export default function OrderHistoryScreen() {
       <Helmet>
         <title>Order History</title>
       </Helmet>
+      <Container  className='pt-3'>
       <h1>Order History</h1>
       {loading ? (
         <LoadingBox></LoadingBox>
@@ -96,6 +98,7 @@ export default function OrderHistoryScreen() {
           </tbody>
         </table>
       )}
+      </Container>
     </div>
   );
 }

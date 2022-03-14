@@ -14,7 +14,7 @@ body {
 }
 
 main{
-  padding: 1rem;
+  
   flex: 1; 
 }
 
@@ -108,3 +108,21 @@ main{
 .text-bold {
   font-weight: bold;
 }
+
+.counter{
+  background-image: url("../public/images/product-bg.jpg") ;
+  background-attachment: fixed;
+
+  background-size: cover;
+  color: white;
+  }
+  .counter h1{
+    font-size: 3rem;
+  }
+  
+  #countdown
+  {
+    font-size: 3rem;
+  }
+
+ 

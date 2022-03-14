@@ -6,6 +6,7 @@ import { Store } from '../Store';
 import { toast } from 'react-toastify';
 import { getError } from '../components/utils';
 import axios from 'axios';
+import Container from 'react-bootstrap/esm/Container';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -77,18 +78,14 @@ export default function ProfileScreen() {
       toast.error(getError(err));
     }
   };
- const isAdmin =()=>
- {
-     if(userInfo.isAdmin)
-     {return 'true';}else
-     {return 'false'}
- }
+
   return (
+    <Container>
     <div className="container small-container" id='small-container'>
       <Helmet>
         <title>User Profile</title>
       </Helmet>
-     <h1> {isAdmin()}</h1>
+ 
      
       <h1 className="my-3">User Profile</h1>
       <form onSubmit={submitHandler}>
@@ -138,5 +135,6 @@ export default function ProfileScreen() {
         </div>
       </form>
     </div>
+    </Container>
   );
 }

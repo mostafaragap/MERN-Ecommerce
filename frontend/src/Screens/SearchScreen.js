@@ -12,6 +12,7 @@ import MessageBox from '../components/MessageBox';
 import Button from 'react-bootstrap/Button';
 import Product from '../components/Product';
 import LinkContainer from 'react-router-bootstrap/LinkContainer';
+import Container from 'react-bootstrap/esm/Container';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -132,6 +133,7 @@ export default function SearchScreen() {
       <Helmet>
         <title>Search Products</title>
       </Helmet>
+      <Container className='pt-3'>
       <Row>
         <Col md={3}>
           <h3>Department</h3>
@@ -279,6 +281,7 @@ export default function SearchScreen() {
           )}
         </Col>
       </Row>
+      </Container>
     </div>
   );
 }
