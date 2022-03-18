@@ -14,6 +14,8 @@ import { toast } from 'react-toastify';
 import { getError } from '../components/utils';
 import Container from 'react-bootstrap/esm/Container';
 
+import Button from 'react-bootstrap/Button';
+
 function reducer(state, action) {
   switch (action.type) {
     case 'FETCH_REQUEST':
@@ -32,6 +34,16 @@ function reducer(state, action) {
       case 'PAY_RESET':
         return { ...state, loadingPay: false, successPay: false };
 
+        case 'UPDATE_REQUEST':
+          return { ...state, loadingUpdate: true };
+
+          case 'UPDATE_SUCCESS':
+            return { ...state, loadingUpdate: false , successUpdate:true };
+     case 'UPDATE_FAIL':
+           return { ...state, loadingUpdate: false };
+      case 'UPDATE_RESET':
+           return { ...state, loadingUpdate: false, successUpdate: false };
+
        
 
     default:
@@ -46,13 +58,15 @@ export default function OrderScreen() {
   const { id: orderId } = params;
   const navigate = useNavigate();
 
-  const [{ loading, error, order, successPay, loadingPay }, dispatch] =
+  const [{ loading, error, order, successPay, loadingPay , loadingUpdate ,successUpdate  }, dispatch] =
   useReducer(reducer, {
     loading: true,
     order: {},
     error: '',
     successPay: false,
     loadingPay: false,
+    successUpdate:false,
+    loadingUpdate:false,
   });
 
 const [{ isPending }, paypalDispatch] = usePayPalScriptReducer();
@@ -116,11 +130,21 @@ function onError(err) {
     if (!userInfo) {
       return navigate('/login');
     }
-    if (!order._id || successPay || (order._id && order._id !== orderId)) {
+    
+    if(successUpdate)
+    {
       fetchOrder();
+      dispatch({ type: 'UPDATE_RESET' });
+      return
+    }
+    
+    if (!order._id || successPay || successUpdate || (order._id && order._id !== orderId)) {
+      fetchOrder();
+      
       if (successPay) {
         dispatch({ type: 'PAY_RESET' });
       }
+
     } else {
       const loadPaypalScript = async () => {
         const { data: clientId } = await axios.get('/api/keys/paypal', {
@@ -137,13 +161,36 @@ function onError(err) {
       };
       loadPaypalScript();
     }
-  }, [order, userInfo, orderId, navigate, paypalDispatch , successPay]);
+  }, [order, userInfo, orderId, navigate, paypalDispatch , successPay , successUpdate]);
+
+
+  const confirmOrderHandler = async (order) => {
+    
+    if (window.confirm('Are you sure to Confirm and set Delivred for this order ?')) {
+      try {
+        dispatch({ type: 'UPDATE_REQUEST' });
+
+        await axios.put(`/api/orders/${order._id}`,{}, {
+          headers: { Authorization: `Bearer ${userInfo.token}` },
+        });
+
+        toast.success('order confirmed successfully');
+        dispatch({ type: 'UPDATE_SUCCESS' });
+      } catch (error) {
+        toast.error(getError(error));
+        dispatch({
+          type: 'UPDATE_FAIL',
+        });
+      }
+    }
+  };
 
   return loading ? (
     <LoadingBox></LoadingBox>
   ) : error ? (
     <MessageBox variant="danger">{error}</MessageBox>
-  ) : (
+  ): loadingUpdate ? <LoadingBox></LoadingBox>
+   : (
     <div>
       <Helmet>
         <title>Order Preview</title>
@@ -163,7 +210,7 @@ function onError(err) {
               </Card.Text>
               {order.isDelivered ? (
                 <MessageBox variant="success">
-                  Delivered at {order.deliveredAt}
+                  Delivered at:  {formatDate(order.deliveredAt)}
                 </MessageBox>
               ) : (
                 <MessageBox variant="danger">Not Delivered</MessageBox>
@@ -246,7 +293,10 @@ function onError(err) {
                     </Col>
                   </Row>
                 </ListGroup.Item>
-                {!order.isPaid && (
+
+
+                {userInfo.isAdmin == false ? (
+                  !order.isPaid && (
                   <ListGroup.Item>
                     {isPending ? (<LoadingBox />
 
@@ -265,7 +315,27 @@ function onError(err) {
                     }
                     {loadingPay && <LoadingBox />}
                   </ListGroup.Item>
-                )}
+                )
+                ):(
+                  <div className='text-center pt-3'>
+                  <Button
+                    type="button"
+                    disabled = {order.isDelivered}
+                    variant="warning"
+                    onClick={() => confirmOrderHandler(order)}
+                  >
+                    Confirm Order
+                  </Button>
+                 
+                 
+                  
+                  </div>
+
+                )
+
+
+                }
+               
               </ListGroup>
             </Card.Body>
           </Card>

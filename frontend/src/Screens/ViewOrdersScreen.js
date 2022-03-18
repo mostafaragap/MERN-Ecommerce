@@ -35,7 +35,7 @@ export default function OrderHistoryScreen() {
       dispatch({ type: 'FETCH_REQUEST' });
       try {
         const { data } = await axios.get(
-          `/api/orders/mine`,
+          `/api/orders/`,
           { headers: { Authorization: `Bearer ${userInfo.token}` } }
         );
         dispatch({ type: 'FETCH_SUCCESS', payload: data });
@@ -51,10 +51,10 @@ export default function OrderHistoryScreen() {
   return (
     <div>
       <Helmet>
-        <title>Order History</title>
+        <title>All Orders</title>
       </Helmet>
       <Container  className='pt-3'>
-      <h1>Order History</h1>
+      <h1>All Orders</h1>
       {loading ? (
         <LoadingBox></LoadingBox>
       ) : error ? (
@@ -78,16 +78,16 @@ export default function OrderHistoryScreen() {
                 <td>{order._id}</td>
                 <td>{order.createdAt.substring(0, 10)}</td>
                 <td>{order.totalPrice.toFixed(2)}</td>
-                <td>{order.isPaid ? <Badge bg='success'> {order.paidAt.substring(0, 10)}</Badge> : <Badge bg='danger'> No</Badge>}</td>
+                <td>{order.isPaid ? <Badge bg="success">{order.paidAt.substring(0, 10)}</Badge>   : <Badge bg="danger">No</Badge>}</td>
                 <td>
                   {order.isDelivered
-                    ?<Badge bg='success'>{order.deliveredAt.substring(0, 10)}</Badge> 
-                    : <Badge bg='danger'>No</Badge>}
+                    ? order.deliveredAt.substring(0, 10)
+                    : 'No'}
                 </td>
                 <td>
                   <Button
                     type="button"
-                    variant="warning"
+                    variant="light"
                     onClick={() => {
                       navigate(`/order/${order._id}`);
                     }}

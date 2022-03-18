@@ -36,6 +36,7 @@ import Footer from './components/Footer';
 import Header from './components/Header';
 import counterComponent from './components/counterComponent'
 import CounterComponent from './components/counterComponent';
+import ViewOrdersScreen from './Screens/ViewOrdersScreen'
 
 
 
@@ -256,6 +257,16 @@ function App() {
                   </AdminRoute>
                 }
               ></Route>
+<Route
+                path="/admin/orders"
+                element={
+                  <AdminRoute>
+                    <ViewOrdersScreen />
+                  </AdminRoute>
+                }
+              ></Route>
+
+
             </Routes>
          
         </main>
