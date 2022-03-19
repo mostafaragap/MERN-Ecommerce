@@ -185,14 +185,22 @@ orderRouter.put(
   })
 );
 
-
+const PAGE_SIZE = 6;
 orderRouter.get(
   '/',
   isAuth, isAdmin,
   expressAsyncHandler(async (req, res) => {
-    const orders = await Order.find().sort({deliveredAt:1 ,paidAt:-1 , createdAt:1});
+    const { query } = req;
+    
+    const page = query.page || 1;
+    const pageSize = query.pageSize || PAGE_SIZE;
 
-    res.send(orders);
+    const orders = await Order.find().skip(pageSize * (page - 1))
+    .limit(pageSize).sort({deliveredAt:1 ,paidAt:-1 , createdAt:1});
+    const countOrders = await Order.countDocuments();
+    res.send({orders,countOrders,
+      page,
+      pages: Math.ceil(countOrders / pageSize),});
 
   })
 );

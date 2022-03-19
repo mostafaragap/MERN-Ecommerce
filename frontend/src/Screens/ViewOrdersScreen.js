@@ -1,9 +1,10 @@
 import React, { useContext, useEffect, useReducer } from 'react';
 import { Helmet } from 'react-helmet-async';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate,Link } from 'react-router-dom';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
+
 import { Store } from '../Store';
 import { getError } from '../components/utils';
 import Button from 'react-bootstrap/esm/Button';
@@ -15,7 +16,8 @@ const reducer = (state, action) => {
     case 'FETCH_REQUEST':
       return { ...state, loading: true };
     case 'FETCH_SUCCESS':
-      return { ...state, orders: action.payload, loading: false };
+      return { ...state, orders: action.payload.orders, loading: false, page: action.payload.page,
+        pages: action.payload.pages, };
     case 'FETCH_FAIL':
       return { ...state, loading: false, error: action.payload };
     default:
@@ -26,16 +28,20 @@ export default function OrderHistoryScreen() {
   const { state } = useContext(Store);
   const { userInfo } = state;
   const navigate = useNavigate();
-  const [{ loading, error, orders }, dispatch] = useReducer(reducer, {
+  const { search } = useLocation();
+  const sp = new URLSearchParams(search);
+  const page = sp.get('page') || 1;
+  const [{ loading, error, orders,pages }, dispatch] = useReducer(reducer, {
     loading: true,
     error: '',
   });
+  
   useEffect(() => {
     const fetchData = async () => {
       dispatch({ type: 'FETCH_REQUEST' });
       try {
         const { data } = await axios.get(
-          `/api/orders/`,
+          `/api/orders?page=${page}`,
           { headers: { Authorization: `Bearer ${userInfo.token}` } }
         );
         dispatch({ type: 'FETCH_SUCCESS', payload: data });
@@ -47,7 +53,7 @@ export default function OrderHistoryScreen() {
       }
     };
     fetchData();
-  }, [userInfo]);
+  }, [userInfo,page]);
   return (
     <div>
       <Helmet>
@@ -100,7 +106,19 @@ export default function OrderHistoryScreen() {
           </tbody>
         </table>
         </div>
+        
       )}
+      <div>
+            {[...Array(pages).keys()].map((x) => (
+              <Link
+                className={x + 1 === Number(page) ? 'btn text-bold' : 'btn'}
+                key={x + 1}
+                to={`/admin/orders?page=${x + 1}`}
+              >
+                {x + 1}
+              </Link>
+            ))}
+          </div>
       </Container>
     </div>
   );

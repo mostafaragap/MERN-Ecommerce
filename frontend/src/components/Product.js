@@ -52,11 +52,13 @@ function ratingNumbre()
         </Link><small>{product.supCategory}</small>
         <Rating rating={ratingNumbre()} numReviews={product.reviews.length} />
         <Card.Text>${product.price}</Card.Text>
-        {product.countInStock === 0 
-        ? <Button onClick={()=> addToCartHandler(product)} disabled={true} variant="secondary">Out OF Stock</Button> 
-         
-        : <Button onClick={()=> addToCartHandler(product)} variant="warning">Add to cart</Button>
-         }
+        <div className='text-center'>{product.countInStock === 0 
+
+? <Button   onClick={()=> addToCartHandler(product)} disabled={true} variant="secondary">Out OF Stock</Button> 
+ 
+: <Button  onClick={()=> addToCartHandler(product)} variant="warning">Add to cart</Button>
+ } </div>
+        
       
       </Card.Body>
     </Card>

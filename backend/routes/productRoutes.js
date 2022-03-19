@@ -8,12 +8,25 @@ import { isAuth, isAdmin } from '../utils.js';
 
 
 
-
+const PAGE_SIZE = 6;
+const HOME_PAGE_SIZE = 4;
 
 const productRouter = express.Router();
 productRouter.get('/', async (req, res) => {
-  const products = await Product.find();
-  res.send(products);
+  const { query } = req;
+    const page = query.page || 1;
+    const pageSize = query.pageSize || HOME_PAGE_SIZE;
+
+    const products = await Product.find()
+      .skip(pageSize * (page - 1))
+      .limit(pageSize);
+    const countProducts = await Product.countDocuments();
+    res.send({
+      products,
+      countProducts,
+      page,
+      pages: Math.ceil(countProducts / pageSize),
+    });
 });
 
 
@@ -120,7 +133,7 @@ productRouter.post(
   })
 );
 
-const PAGE_SIZE = 6;
+
 productRouter.get(
   '/admin',
   isAuth,
