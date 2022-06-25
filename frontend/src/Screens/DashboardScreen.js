@@ -102,10 +102,37 @@ export default function DashboardScreen() {
                       ? summary.orders[0].totalSales.toFixed(2)
                       : 0}
                   </Card.Title>
-                  <Card.Text> Orders</Card.Text>
+                  <Card.Text> all Orders Prices</Card.Text>
                 </Card.Body>
               </Card>
             </Col>
+            <Col md={4}>
+              <Card>
+                <Card.Body>
+                  <Card.Title>
+                    $
+                    {summary.payedOrders && summary.users[0]
+                      ? summary.payedOrders[0].totalSales.toFixed(2)
+                      : 0}
+                  </Card.Title>
+                  <Card.Text>  Paied Orders</Card.Text>
+                </Card.Body>
+              </Card>
+            </Col>
+            <Col md={4}>
+              <Card>
+                <Card.Body>
+                  <Card.Title>
+                    $
+                    {summary.notPayedOrders && summary.users[0]
+                      ? summary.notPayedOrders[0].totalSales.toFixed(2)
+                      : 0}
+                  </Card.Title>
+                  <Card.Text>  Not Paied Orders</Card.Text>
+                </Card.Body>
+              </Card>
+            </Col>
+
           </Row>
           <div className="my-3">
             <h2>Sales</h2>
