@@ -102,7 +102,7 @@ export default function DashboardScreen() {
                       ? summary.orders[0].totalSales.toFixed(2)
                       : 0}
                   </Card.Title>
-                  <Card.Text> all Orders Prices</Card.Text>
+                  <Card.Text> all Orders summary</Card.Text>
                 </Card.Body>
               </Card>
             </Col>
@@ -115,7 +115,7 @@ export default function DashboardScreen() {
                       ? summary.payedOrders[0].totalSales.toFixed(2)
                       : 0}
                   </Card.Title>
-                  <Card.Text>  Paied Orders</Card.Text>
+                  <Card.Text>  Paied Orders summary</Card.Text>
                 </Card.Body>
               </Card>
             </Col>
@@ -128,7 +128,7 @@ export default function DashboardScreen() {
                       ? summary.notPayedOrders[0].totalSales.toFixed(2)
                       : 0}
                   </Card.Title>
-                  <Card.Text>  Not Paied Orders</Card.Text>
+                  <Card.Text>  Not Paied Orders summary</Card.Text>
                 </Card.Body>
               </Card>
             </Col>
