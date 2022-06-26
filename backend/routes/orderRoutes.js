@@ -10,7 +10,6 @@ import { isAuth, isAdmin, mailgun, payOrderEmailTemplate } from '../utils.js';
 import { createOrder,getSummary,getMineOrders,confirmOrder,getOrder,payOrder,viewOrders } from "../controllers/ordersController.js";
 const orderRouter = express.Router();
 
-
 orderRouter.post('/', isAuth,createOrder);
 orderRouter.get('/summary', isAuth,isAdmin,getSummary);
 orderRouter.get('/mine', isAuth,getMineOrders);
