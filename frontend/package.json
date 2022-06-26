@@ -21,7 +21,8 @@
     "react-scripts": "5.0.0",
     "react-toastify": "^8.2.0",
     "use-reducer-logger": "^1.0.2",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "xxxx": "^3.0.4"
   },
   "scripts": {
     "start": "react-scripts start",

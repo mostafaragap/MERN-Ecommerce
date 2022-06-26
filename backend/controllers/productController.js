@@ -100,7 +100,7 @@ const addReview= expressAsyncHandler(async(req,res)=>{
     }
 });
 
-const searchForProduct=expressAsyncHandler(async(rea,res)=>{
+const searchForProduct=expressAsyncHandler(async(req,res)=>{
     const { query } = req;
     const pageSize = query.pageSize || PAGE_SIZE;
     const page = query.page || 1;

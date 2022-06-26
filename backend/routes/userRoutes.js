@@ -4,9 +4,10 @@ import {getAllUsers,register, getUser,updateUser,deleteUser,login , updateByAdmi
 
 const userRouter= express.Router();
 userRouter.get('/' , isAuth,isAdmin, getAllUsers);
-userRouter.route('/:id',isAuth,isAdmin).get(getUser).put(updateByAdmin).delete(deleteUser)
 userRouter.put('/profile' , isAuth , updateUser);
 userRouter.post('/signin' , login);
 userRouter.post('/signup' , register);
+userRouter.route('/:id',isAuth,isAdmin).get(getUser).put(updateByAdmin).delete(deleteUser)
+
 
 export default userRouter ;

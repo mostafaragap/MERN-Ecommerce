@@ -2,9 +2,14 @@
   "name": "ecommerce",
   "version": "1.0.0",
   "description": "1. init a basics frontend & create react app\r 2. create Git Repository\r 3. create nodejs server\r 4. modify on design and use react-bootstrap . edit server.js\r 5. create-loading component & Add to cart screen with all functions.",
+<<<<<<< dev
+  "engines": {
+    "node": "17.4.0"
+=======
   "main": "index.js",
   "engines": {
     "node": "16.x"
+>>>>>>> master
   },
   "scripts": {
     "build": "cd frontend && npm install && npm run build && cd ../backend && npm install",
