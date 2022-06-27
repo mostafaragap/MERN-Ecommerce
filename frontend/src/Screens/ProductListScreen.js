@@ -140,7 +140,8 @@ export default function ProductListScreen() {
       }
     }
   };
-
+let imageStyle= {borderRadius: '50%' , width:'80px', height:'auto'}
+let thStyle = {justifyContent:'center', alignItems:'center'}
   return (
     <div>
     <Container className='pt-3'>
@@ -173,9 +174,10 @@ export default function ProductListScreen() {
         <div id='tbl-container'>
         <Table striped bordered hover size="sm">
             <thead>
-              <tr>
-                <th>ID</th>
-                <th>NAME</th>
+              <tr align='center'>
+                
+                <th >NAME</th>
+                <th>Image</th>
                 <th>PRICE</th>
                 <th>CATEGORY</th>
                 <th>SUP CATEGORY</th>
@@ -186,14 +188,15 @@ export default function ProductListScreen() {
             </thead>
             <tbody>
               {products.map((product) => (
-                <tr key={product._id}>
-                  <td>{product._id}</td>
+                <tr align='center' key={product._id}>
+          
                   <td>{product.name}</td>
+                  <td><img src={product.image} style={imageStyle} /></td>
                   <td>{product.price}</td>
                   <td>{product.category}</td>
                   <td>{product.supCategory}</td>
                   <td>{product.brand}</td>
-                  <td>{product.countInStock  < 2 ? <Badge bg="danger">{product.countInStock}</Badge>:<Badge bg="success">{product.countInStock}</Badge>}</td>
+                  <td>{product.countInStock  < 2 ? <Badge  bg="danger">{product.countInStock}</Badge> :<Badge bg="success">{product.countInStock}</Badge>}</td>
                   <td>
                     <Button
                       type="button"
