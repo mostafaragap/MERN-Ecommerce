@@ -132,5 +132,8 @@ main{
     overflow: auto;
     white-space: nowrap;
   }
+  button.thumbnail {
+    padding: 0;
+  }
 
  
