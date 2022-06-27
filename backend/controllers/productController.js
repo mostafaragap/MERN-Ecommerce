@@ -39,7 +39,7 @@ const addProduct = expressAsyncHandler(async(req,res)=>{
 });
 
 const updateProduct = expressAsyncHandler(async(req,res)=>{
-    const {name , slug,price,image,category,supCategory,brand,countInStock,description}=req.body;
+    const {name , slug,price,image,images,category,supCategory,brand,countInStock,description}=req.body;
     const productId = req.params.id;
     const product = await Product.findById(productId);
     if (product) {
@@ -47,6 +47,7 @@ const updateProduct = expressAsyncHandler(async(req,res)=>{
       product.slug = slug;
       product.price = price;
       product.image = image;
+      product.images=images;
       product.category = category;
       product.supCategory = supCategory;
       product.brand = brand;

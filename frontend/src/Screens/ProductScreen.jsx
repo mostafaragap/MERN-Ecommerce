@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useReducer, useRef, useState } from "react";
-import data from "../data";
 import {  Link, useNavigate, useParams } from 'react-router-dom';
 import axios from "axios";
 import Row from "react-bootstrap/esm/Row";
@@ -48,6 +47,7 @@ function ProductScreen(props)
 
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState('');
+  const [selectedImage, setSelectedImage] = useState('');
   const navigate = useNavigate();
     const { slug } = useParams();
     
@@ -148,7 +148,7 @@ function ProductScreen(props)
              <Col md={6}>
                  <img 
                   className="img-large"
-                  src={product.image}
+                  src={selectedImage || product.image}
                   alt={product.name}
 
                  />
@@ -172,6 +172,24 @@ function ProductScreen(props)
               <ListGroup.Item>
                 Price: ${product.price}
               </ListGroup.Item>
+              <ListGroup.Item>
+              <Row xs={1} md={2} className="g-2">
+                {[product.image, ...product.images].map((x) => (
+                  <Col key={x}>
+                    <Card>
+                      <Button
+                        className="thumbnail"
+                        type="button"
+                        variant="light"
+                        onClick={() => setSelectedImage(x)}
+                      >
+                        <Card.Img variant="top" src={x} alt="product" />
+                      </Button>
+                    </Card>
+                  </Col>
+                ))}
+              </Row>
+            </ListGroup.Item>
               <ListGroup.Item>
                 Description: {product.description}
               </ListGroup.Item>

@@ -18,6 +18,7 @@ const productSchema = new mongoose.Schema(
     slug: { type: String, required: true, unique: true },
     image: { type: String, required: true },
     brand: { type: String, required: true },
+    images: [String],
     category: { type: String, required: true },
     supCategory:{type:String , required:true},
     description: { type: String, required: true },
